@@ -1,0 +1,714 @@
+#overlayer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background: rgb(36, 37, 38);
+}
+
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index: 3;
+  border: 4px solid #Fff;
+  top: calc(50% - 15px);
+  right: calc(50% - 15px);
+  -webkit-animation: loader 2s infinite ease;
+          animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  -webkit-animation: loader-inner 2s infinite ease-in;
+          animation: loader-inner 2s infinite ease-in;
+}
+
+@-webkit-keyframes loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  25% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  75% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  25% {
+    height: 0%;
+  }
+  50% {
+    height: 100%;
+  }
+  75% {
+    height: 100%;
+  }
+  100% {
+    height: 0%;
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+  25% {
+    height: 0%;
+  }
+  50% {
+    height: 100%;
+  }
+  75% {
+    height: 100%;
+  }
+  100% {
+    height: 0%;
+  }
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+}
+
+@-webkit-keyframes unrotate {
+  0% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes unrotate {
+  0% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+body {
+  overflow: hidden;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.tbody::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.tbody {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+#header {
+  background-color: rgb(36, 37, 38);
+  height: 15vh;
+}
+
+#title {
+  font-family: 'Shippori Mincho', serif;
+  color: black !important;
+  font-size: 3.5vh;
+  padding: 5px;
+  border-bottom: dotted black;
+  margin: 0px;
+}
+
+#title a {
+  text-decoration: none;
+  color: white;
+}
+
+.tableTitle {
+  font-family: 'Noto Sans JP', serif;
+  color: black;
+  font-size: 2vh;
+  padding: 0px;
+  cursor: pointer;
+}
+
+.currentTitle {
+  font-size: 2.5vh;
+  padding: 5px;
+  margin: 0px;
+}
+
+#tableSelect {
+  width: 75%;
+  text-align-last: center;
+}
+
+.tableTitle:hover {
+  opacity: 1;
+  -webkit-animation-name: underline;
+          animation-name: underline;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.icon {
+  width: 50px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+#arrow-down {
+  width: 40px;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+#arrow-down:hover {
+  opacity: 0.7;
+}
+
+#tables {
+  display: none;
+  position: absolute;
+  top: 15vh;
+  width: 100%;
+  height: 6vh;
+  background-color: rgb(36, 37, 38);
+  z-index: 4;
+}
+
+@-webkit-keyframes underline {
+  from {
+    -webkit-text-decoration: underline rgba(0, 0, 0, 0);
+            text-decoration: underline rgba(0, 0, 0, 0);
+  }
+  to {
+    -webkit-text-decoration: underline black;
+            text-decoration: underline black;
+  }
+}
+
+@keyframes underline {
+  from {
+    -webkit-text-decoration: underline rgba(0, 0, 0, 0);
+            text-decoration: underline rgba(0, 0, 0, 0);
+  }
+  to {
+    -webkit-text-decoration: underline black;
+            text-decoration: underline black;
+  }
+}
+
+.justify {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+#optionsBarWrapper {
+  width: 100%;
+  height: 25vh;
+}
+
+#optionsBarInput {
+  margin: auto;
+}
+
+#columnTitle, #sortBy {
+  text-align: center;
+  width: 100%;
+  font-family: 'Noto Sans JP', sans-serif;
+  height: 30px;
+  padding: 0;
+}
+
+#searchTextWrapper {
+  padding-right: 0px;
+}
+
+#searchText {
+  text-align: center;
+  height: 30px;
+  padding: 0px;
+  width: 100%;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.navButton, #returnButton, .saveButton, #employeesOption, .editButton, .addButton, .updateButton, .deleteButton, .yesButton, #noButton, #signInButton, #returnButton2 {
+  height: 30px;
+  padding: 2px 8px 2px 8px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgb(36, 37, 38);
+  border-color: black;
+  font-family: 'Noto Sans JP', sans-serif;
+  width: 76px;
+}
+
+.form-group {
+  padding: 5px;
+}
+
+#submitButtonWrapper {
+  padding-left: 0px;
+}
+
+.addButton, .yesButton {
+  background-color: green;
+}
+
+.updateButton {
+  background-color: #0099ff;
+}
+
+.deleteButton, #noButton {
+  background-color: red;
+}
+
+.closeButton {
+  height: 5vh;
+  float: right;
+  clear: both;
+}
+
+.editCol {
+  width: 5%;
+  cursor: pointer;
+}
+
+.plusButton {
+  width: 30px;
+  height: 30px;
+  background-color: green;
+  border-radius: 5px;
+}
+
+.plusButton:hover {
+  opacity: 0.5;
+}
+
+.minusButton {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 5px;
+}
+
+.minusButton:hover {
+  opacity: 0.5;
+}
+
+#editSlider {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: black;
+  padding: 0px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 28px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: chocolate;
+  color: white;
+}
+
+input:focus + .slider {
+  -webkit-box-shadow: 0 0 1px rgb(36, 37, 38);
+          box-shadow: 0 0 1px rgb(36, 37, 38);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+  padding-left: 6px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+table tbody, table thead {
+  display: block;
+  cursor: pointer;
+}
+
+#locationTable tbody, #locationTable thead, #departmentTable tbody, #departmentTable thead {
+  cursor: default;
+}
+
+th {
+  width: 100vw;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.thead-dark th:hover {
+  background-color: #454d55;
+}
+
+td {
+  width: 100vw;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.idClass {
+  width: 90px;
+}
+
+table tbody {
+  overflow-y: auto;
+  height: calc(50vh - 50px);
+  margin-top: 5px;
+}
+
+#directoryTable, #locationTable {
+  margin: 0;
+  table-layout: fixed;
+  width: 100%;
+  word-break: break-all;
+}
+
+#locationTable, #departmentTable {
+  display: none;
+}
+
+.jobClass, .departmentClass, .locationClass, .emailClass {
+  display: none;
+}
+
+#entriesNum {
+  background-color: rgb(36, 37, 38);
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#entriesNum p {
+  margin: auto;
+  font-family: 'Noto Sans JP', sans-serif;
+  color: black;
+}
+
+.hide {
+  display: none;
+}
+
+#displayProfile {
+  height: 58vh;
+  padding: 0;
+}
+
+#profileCard {
+  margin: auto;
+  width: 98%;
+  height: 100%;
+  padding: 0px;
+}
+
+.card {
+  font-size: 1em;
+}
+
+#cardTitle {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+#returnButtonWrapper {
+  display: inline;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#profileTitle {
+  width: 75vw;
+}
+
+#profileTable {
+  width: 100%;
+  padding-top: 5px;
+}
+
+#profileTitleWrapper {
+  height: 70px;
+  border-bottom: solid black;
+}
+
+#firstNameUpdate, #lastNameUpdate, #jobTitleUpdate, #departmentUpdate, #locationUpdate, #emailUpdate {
+  width: 100%;
+}
+
+.popUpDisplay {
+  position: absolute;
+  width: 300px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  border: solid black;
+  border-width: 8px;
+  border-radius: 10px;
+  z-index: 2;
+  margin: auto;
+  text-align: center;
+  padding: 2%;
+}
+
+#signInDisplay div {
+  height: 20%;
+  clear: both;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#password {
+  width: 60%;
+  height: 30px;
+}
+
+#errorMessage {
+  color: red;
+}
+
+.message {
+  clear: both;
+}
+
+.editOption {
+  height: 12vh;
+  border: solid white;
+  border-radius: 10px;
+}
+
+#editOptionsTbody {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.editOptionsTd {
+  text-align: center;
+  padding: 0px !important;
+}
+
+.editRow {
+  color: red;
+}
+
+#moreButton {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 5px;
+  padding: 0px;
+}
+
+#moreButton:hover {
+  opacity: 0.7;
+}
+
+@media (min-width: 376px) {
+  #title {
+    font-size: 4vh;
+  }
+  .tableTitle {
+    font-size: 2.5vh;
+  }
+  .currentTitle {
+    font-size: 3vh;
+  }
+}
+
+@media (min-width: 426px) {
+  #title {
+    font-size: 5vh;
+  }
+  .tableTitle {
+    font-size: 3vh;
+  }
+  .currentTitle {
+    font-size: 4vh;
+  }
+}
+
+@media (min-width: 768px) {
+  #title {
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 992px) {
+  #optionsBarWrapper {
+    height: 10vh;
+  }
+  #currentTitleWrapper {
+    height: 56px;
+  }
+  table tbody {
+    overflow-y: scroll;
+    height: calc(65vh - 50px);
+    margin-top: 5px;
+  }
+  .jobClass, .departmentClass, .locationClass, .emailClass {
+    display: table-cell;
+  }
+  .addButton, .deleteButton {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  #moreButtonWrapper {
+    display: none;
+  }
+  #cardBody, #cardBody h5 {
+    font-size: 1.25rem;
+  }
+  #profileCard {
+    width: 75%;
+  }
+  .card {
+    font-size: 1.25em;
+  }
+  #profileTable {
+    width: 100%;
+  }
+  .form-group {
+    padding: 10px;
+  }
+  .editOptionsTd {
+    text-align: center;
+    padding: 20px 0px 0px 0px !important;
+  }
+}
+/*# sourceMappingURL=style.css.map */

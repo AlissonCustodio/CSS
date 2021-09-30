@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Alisson Custodio : Company Directory</title>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=RocknRoll+One&family=Shippori+Mincho:wght@500&display=swap" rel="stylesheet">
+
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="sources/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="dist/style.css">
+    
+</head>
+<body>
+
+    <div id="content">
+
+        <!-- Header -->
+        <div class="m-auto d-flex align-items-center row"  id="header">
+            <div class="m-auto justify col-md-6">
+                <h1 class="justify" id="title"><a class="justify" id="titleLink "href="http://alissoncustodio.co.uk/"> Company Directory</a></h1>
+            </div>
+            <div class="m-auto justify col-md-6" id="currentTitleWrapper">
+                <select class="form-control tableTitle" name="tableTitle" id="tableSelect">
+                    <option value="Employees">Employees</option>
+                    <option value="Departments">Departments</option>
+                    <option value="Locations">Locations</option>
+                </select>
+            </div>
+        </div>
+
+
+        <!-- Content -->
+        <main>
+            <!-- Options Bar -->
+            <div class="m-auto align-items-center row" id="optionsBarWrapper">
+                <div class="col-md-7 col-12 row m-auto" id="optionsBarInput">
+
+                    <!-- Column Title -->
+                    <div class="col-6 col-sm-3 m-auto form-group" id="columnTitleWrapper">
+                        <select class="form-control" name="columnTitle" id="columnTitle">
+                            <option value="p.lastName">Last Name</option>
+                            <option value="p.firstName">First Name</option>
+                            <option value="p.jobTitle">Job Title</option>
+                            <option value="d.name">Department</option>
+                            <option value="l.name">Location</option>
+                            <option value="p.email">Email</option>
+                        </select>
+                    </div>
+
+                    <!-- Sort By -->
+                    <div class="col-6 col-sm-3 m-auto form-group" id="sortByWrapper">
+                        <select class="form-control" name="sortBy" id="sortBy">
+                            <option value="contains">Contains</option>
+                            <option value="equals">Equals</option>
+                            <option value="endsWith">Ends with</option>
+                            <option value="startsWith">Starts with</option>
+                        </select>
+                    </div>
+
+                    <!-- Search Text -->
+                    <div class="col-9 col-sm-3 m-auto  form-group" id="searchTextWrapper">
+                        <input class="form-control" type="text" id="searchText" placeholder="Input Text">
+                    </div>
+                    
+                    <!-- Submit -->
+                    <div class="col-3 col-sm-3 m-auto" id="submitButtonWrapper">
+                        <button type="submit" id="submitButton" class="btn btn-primary m-auto navButton">Submit</button>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="col-md-5 col-12 row m-auto" id="optionsBarButtons">
+                    <!-- Reset -->
+                    <div class="col-4 col-sm-6 row m-auto" id="resetButtonWrapper">
+                        <button type="reset" id="resetButton" class="btn btn-primary m-auto navButton">Reset</button>
+                    </div>
+
+                    <!-- Edit Slider -->
+                    <div class="col-6 col-sm-6 row m-auto" id="editSlider">
+                        <p id="editModeText" class="m-auto">Edit Mode: </p>
+                        <label class="switch m-auto" for="editCheck">
+                            <input id="editCheck" type="checkbox">
+                            <span class="slider round">On</span>
+                        </label>
+                    </div>
+
+                    <!-- Mobile more button -->
+                    <div class="col-2 m-auto" id="moreButtonWrapper">
+                        <img src="images/caret-square-down-solid.svg" alt="Down Arrow Icon from font awesome" class="justify icon" id="moreButton" onclick="showMoreData()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="m-auto align-items-center"  id="directoryTableWrapper">
+                <table class="table table-striped table-dark table-hover col-12 m-0" id="directoryTable">
+
+                    <!-- Table Head -->
+                    <thead class="thead-dark">
+                        <tr>
+                            <!-- <th scope="col" id="idCol" class="idClass" onclick="sortById()">Id</th> -->
+                            <th scope="col" id="nameCol" class="nameClass">Name</th>
+                            <th scope="col" id="jobCol" class="jobClass">Job</th>
+                            <th scope="col" id="departmentCol" class="departmentClass">Department</th>
+                            <th scope="col" id="locationCol" class="locationClass">Location</th>
+                            <th scope="col" id="emailCol" class="emailClass">Email</th>
+                            <th scope="col" class="editCol" id="addEmployee" data-toggle="modal" data-target="#addEmployeeModal">
+                                <img class="plusButton" src="images/plus-square-solid.svg" alt="Plus Icon from fontawesome">
+                            </th>
+                        </tr>
+                        
+                    </thead>
+
+                    <!-- Table Body -->
+                    <tbody class="tbody" id="employeeTableBody">
+                        
+                    </tbody>
+                </table>
+
+                <!-- Location Table -->
+                <table class="table table-striped table-dark table-hover col-12 m-0" id="locationTable">
+                    <!-- Table Head -->
+                    <thead class="thead-dark">
+                        <tr>
+                            <!-- <th scope="col" id="idCol" onclick="sortById()">Location Id</th> -->
+                            <th scope="col" id="locationNameCol">Location Name</th>
+                            <th scope="col" class="editCol" id="addLocation" data-toggle="modal" data-target="#addLocationModal">
+                                <img class="plusButton" src="images/plus-square-solid.svg" alt="Plus Icon from fontawesome">
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <!-- Table Body -->
+                    <tbody class="tbody" id="locationTableBody">
+                        
+                    </tbody>
+                </table>
+
+
+                <!-- Department Table -->
+                <table class="table table-striped table-dark table-hover col-12 m-0" id="departmentTable">
+                    <!-- Table Head -->
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" id="departmentNameCol">Department</th>
+                            <th scope="col" id="departmentLocationNameCol">Location</th>
+                            <th scope="col" class="editCol" id="addDepartment" data-toggle="modal" data-target="#addDepartmentModal">
+                                <img class="plusButton" src="images/plus-square-solid.svg" alt="Plus Icon from fontawesome">
+                            </th>
+                        </tr>
+                        
+                    </thead>
+
+                    <!-- Table Body -->
+                    <tbody class="tbody" id="departmentTableBody">
+                        
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!-- Modals -->
+
+            <!-- Add Modals -->
+                <!-- Employee Add -->
+                <div id="addEmployeeModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Employee</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <table class='m-auto table-striped'>
+                                <tbody id='addEmployeeTable'>
+                                    <tr>
+                                        <td>Last Name: </td><td><input class='form-control' type='text' placeholder='Last Name...' id='lastNameAdd'></input></td>
+                                    </tr>
+                                    <tr>
+                                        <td>First Name: </td><td><input class='form-control' type='text' placeholder='First Name...' id='firstNameAdd'></input></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Job Title: </td><td><input class='form-control' type='text' placeholder='Job Title...' id='jobTitleAdd'></input></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Department: </td><td><select class='form-control' id='departmentAdd'></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email: </td><td><input class='form-control' type='text' placeholder='Email...' id='emailAdd'></input></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" id="addEmployeeSaveButton" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal">Save</button>
+                        </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Department Add -->
+                <div id="addDepartmentModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Department</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <table class='m-auto table-striped'>
+                                <tbody id='addDepartmentTable'>
+                                    <tr>
+                                        <td>Department: </td>
+                                        <td><input class='form-control' type='text' placeholder='Department name...' id='departmentNameAdd'></input></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location: </td>
+                                        <td><select class='form-control' id='locationAdd'></select></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+    
+                        <div class="modal-footer">
+                            <button type="button" id="addDepartmentSaveButton" class="btn btn-primary"  data-toggle="modal" data-target="#confirmationModal">Save</button>
+                        </div>
+                        </div>
+    
+                    </div>
+                </div>
+
+                <!-- Location Add -->
+                <div id="addLocationModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Add Location</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <table class='m-auto table-striped'>
+                                <tbody id='addLocationTable'>
+                                    <tr>
+                                        <td>Location: </td>
+                                        <td><input class='form-control' type='text' placeholder='Location name...' id='locationNameAdd'></input></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+    
+                        <div class="modal-footer">
+                            <button type="button" id="addLocationSaveButton" class="btn btn-primary"  data-toggle="modal" data-target="#confirmationModal">Save</button>
+                            <!-- data-dismiss="modal"  -->
+                        </div>
+                        </div>
+    
+                    </div>
+                </div>
+
+            <!-- Update/Profile Modals -->
+            <div id="updateModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="profileTitle">Update</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body" id="profileBody">
+
+                    </div>
+
+                    <div class="modal-footer" id="profileFooter">
+                        <button type="button" id="updateSaveButton" class="btn btn-primary"  data-toggle="modal" data-target="#confirmationModal">Save</button>
+                        <!-- data-dismiss="modal"  -->
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Delete Modal -->
+            <div id="deleteModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Please Confirm</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body" id="deleteMessage">
+
+                        </div>
+    
+                        <div class="modal-footer" id="deleteButtons">
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Profile Modals -->
+
+
+            <!-- Message Modals -->
+                <!-- Confirmation Message -->
+                <div id="confirmationModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-sm">
+    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Please Confirm</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body" id="confirmationMessage">
+
+                            </div>
+        
+                            <div class="modal-footer" id="confirmationButtons">
+                                
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+
+                <!-- Success Messages -->
+                <div id="successModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-sm">
+    
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Alert!</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body" id="successMessage">
+
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            <div id="displayProfile" class="hide">
+                <div class="card text-white bg-dark" id="profileCard">
+                    <div class="card-body m-auto row" id="cardBody">
+                        <div class="row col-12 m-auto" id="profileTitleWrapper"> 
+                            <h5 class=" col-9 m-auto" id="cardTitle">Card title</h5>
+                            <div id="saveButtonWrapper"></div>
+                            <div id="returnButtonWrapper" class="col-3 m-auto"><button id="returnButton" onclick="profileReturn()" class="btn btn-primary">Return</button></div>
+                        </div>
+
+                        <div class="card-text m-auto row" id="profileTable">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Warning Display -->
+            <div id="warningDisplay" class="hide row m-auto popUpDisplay">
+                <img src="images/window-close-regular.svg" alt="Window close icon from font awesome" onclick="warningHide()" class="closeButton" id="closeSignIn">
+            </div>
+
+            <!-- Employee Deletion Warning Display -->
+            <div id="employeeWarningDisplay" class="hide row m-auto popUpDisplay">
+            </div>
+
+            <!-- Sign In Display -->
+            <div id="signInDisplay" class="hide row m-auto popUpDisplay">
+                <img src="images/window-close-regular.svg" alt="Window close icon from font awesome" onclick="signInHide()" class="closeButton" id="closeSignIn">
+                <div class="row m-auto"><h2 class="m-auto col-12" id="signInMessage">Please Sign In:</h2></div>
+                <div class="row m-auto"><p style="margin-top: 0.5rem;">The password is: <span style="color: chocolate;"> Demo</span></p></div>
+                <div id="errorMessage" class="row m-auto"></div>
+                <div class="row m-auto form-group"><input class="form-control" type="password" name="password" id="password" placeholder="Password..."><button class="btn btn-primary" id="signInButton" type="submit">Sign In</button></div>
+            </div>
+
+            <!-- Number of Entries -->
+            <div class="m-auto align-items-center" id="entriesNum">
+            </div>
+        </main>
+
+    </div>
+
+
+
+
+
+    <!-- Scripts -->
+    <script src="sources/jquery/jquery.min.js"></script>
+    <script src="sources/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
