@@ -27,17 +27,20 @@
 
 	$id = $_POST['id'];
 
-	$query ='DELETE FROM location WHERE ( SELECT COUNT(id) FROM `department` WHERE `locationID` =' . $id . ') = 0 AND id =' . $id;
+	// Deleting Department ----------------------------------------------------------------
+	$queryDepartment ='DELETE FROM `department` WHERE `locationID` =' . $id;
 
+	$resultDepartment = $connection->query($queryDepartment);
 
-	
-	// 'DELETE FROM location WHERE `locationID` =' . $id;
-	
-	
-	
+	// ---------------------------------------------------------------------------------------
 
+	// Deleting Location --------------------------------------------------------------------------
+
+	$query ='DELETE FROM `location` WHERE id ='.$id;
 
 	$result = $connection->query($query);
+
+	// ---------------------------------------------------------------------------------
 
 
 	
@@ -63,11 +66,11 @@
 
 	$data = [];
 
-	while ($row = mysqli_fetch_assoc($result)) {
+	// while ($row = mysqli_fetch_assoc($result)) {
 
-		array_push($data, $row);
+	// 	array_push($data, $row);
 
-	}
+	// }
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";

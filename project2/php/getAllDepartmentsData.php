@@ -46,6 +46,8 @@
    
    	$data = [];
 
+	sleep(6);
+
 	while ($row = mysqli_fetch_assoc($result)) {
 
 		array_push($data, $row);

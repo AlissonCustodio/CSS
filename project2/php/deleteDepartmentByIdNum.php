@@ -30,9 +30,31 @@
 
 	$id = $_POST['id'];
 
-	$query ='DELETE FROM department WHERE ( SELECT COUNT(id) FROM `personnel` WHERE `departmentID` =' . $id . ') = 0 AND id =' . $id;
 
+	// Deleting Personnel -------------------------------------------------------------
+	$queryPersonnel ='DELETE FROM `personnel` WHERE `departmentID` ='.$id;
 
+	$resultPersonnel = $connection->query($queryPersonnel);
+
+	if (!$resultPersonnel) {
+
+		$output['status']['code'] = "400";
+		$output['status']['name'] = "executed";
+		$output['status']['description'] = "Error deleting personnel";	
+		$output['data'] = [];
+
+		mysqli_close($connection);
+
+		echo json_encode($output); 
+
+		exit;
+
+	}
+	// ------------------------------------------------------------------
+
+	// DELETING DEPARTMENT -------------------------------------------------
+
+	$query ='DELETE FROM department WHERE id =' . $id;
 
 
 	$result = $connection->query($query);
@@ -51,6 +73,8 @@
 		exit;
 
 	}
+
+	// ----------------------------------------------------------------------------------
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";

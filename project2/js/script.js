@@ -7,18 +7,40 @@
     var checkbox = $('#editCheck');
 
     //Preloader
-    function preloader() {
-        $("#content").hide();
+    async function preloader(state) {
+
+
+
+
+        if(state) {
         $(".loader").delay(4800).fadeOut("slow");
         $("#overlayer").delay(5000).fadeOut("slow");
-        setTimeout(() => {
-            $("#content").show();
-        }, 6000);
+        $("#loadModal").modal({backdrop: 'static', keyboard: false, show: true})
+
+            $('#content').show();
+
+            console.log('Carregando')
+
+
+        } else {
+
+        await new Promise(r => setTimeout(r, 2000));
+
+
+            $("#loadModal").modal('hide')
+
+            console.log('Exibindo...')
+
+        }
+
+
     }
 
 // Functions:
     //Get data
     function getAllDepartmentsData() {
+
+        
         $.ajax({
             url: 'php/getAllDepartmentsData.php',
             type: 'POST',
@@ -120,11 +142,14 @@
         }); 
     }
     function countEntries(num) {
-        $("#entriesNum").append("<p class='m-auto'> Total Entries: " + num + "</p>");
+        $("#entriesNum").append("<p class='m-auto text-light'> Total Entries: " + num + "</p>");
     }
 
 //  Department Table
     function buildDepartmentTable(){
+
+
+
         $.ajax({
             url: 'php/getAllDepartmentsAndLocationsData.php',
             type: 'POST',
@@ -154,8 +179,11 @@
                         }   
                         
                     });
+
                                 
                 }
+
+
             
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -401,7 +429,7 @@ function buildLocationTable(){
         }
 
         $("#directoryTable").fadeIn();
-        $("#entriesNum").append("<p class='m-auto'> Total Entries: " + entries+ " Employees</p>");
+        $("#entriesNum").append("<p class='m-auto text-light'> Total Entries: " + entries+ " Employees</p>");
     }   
 
     function locationClick() {
@@ -409,15 +437,16 @@ function buildLocationTable(){
         hideTables();
         $("#moreButtonWrapper").hide();
         $("#locationTable").fadeIn();
-        $("#entriesNum").append("<p class='m-auto'> Total Entries: " + locationEntries+ " Locations</p>");
+        $("#entriesNum").append("<p class='m-auto text-light'> Total Entries: " + locationEntries+ " Locations</p>");
     }
   
     function departmentClick() {
+
         $("#entriesNum").empty();
         hideTables();
         $("#moreButtonWrapper").hide();
         $("#departmentTable").fadeIn();
-        $("#entriesNum").append("<p class='m-auto'> Total Entries: " + departmentEntries+ " Departments</p>");
+        $("#entriesNum").append("<p class='m-auto text-light'> Total Entries: " + departmentEntries+ " Departments</p>");
     }
 
 
@@ -1243,7 +1272,7 @@ function buildLocationTable(){
 
         function deleteDepartment(entryId) {
             $.ajax({
-                url: 'php/checkEmployees.php',
+                url: 'php/deleteDepartmentByIdNum.php',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -1253,34 +1282,15 @@ function buildLocationTable(){
                     // console.log(result);
                     entries = 0
                     if (result.status.name == "ok") {
-                        if(result['data']['0']['COUNT(id)'] == 0) {
-                            $.ajax({
-                                url: 'php/deleteDepartmentByIdNum.php',
-                                type: 'POST',
-                                dataType: 'json',
-                                data: {
-                                    id: entryId,
-                                },
-                                success: function(result) {
-                                    // console.log(result);
-                                    entries = 0
-                                    if (result.status.name == "ok") {
-                                        successMessage("Department deleted.")
-                                        reset();              
-                                    }
-                                    if (result.status.name == "executed") {
-                                        successMessage("Error: This department still has dependencies!")
-                                    }
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                // console.log(jqXHR.responseText);
-                                }
-                            }); 
-                        }
-                        else {
-                            successMessage("Error: This department still has dependencies and cannot be delete.")
-                        }
-                        reset();  
+                        successMessage("Department deleted.")
+                        // reset();   
+                        setTimeout(() => {
+                            window.location.href='/';
+                        }, 3000);
+
+                    }
+                    if (result.status.name == "executed") {
+                        successMessage("Error: This department still has dependencies!")
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -1291,7 +1301,7 @@ function buildLocationTable(){
 
         function deleteLocation(entryId) {
             $.ajax({
-                url: 'php/checkDepartment.php',
+                url: 'php/deleteLocationByIdNum.php',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -1301,38 +1311,17 @@ function buildLocationTable(){
                     console.log(result);
                     entries = 0
                     if (result.status.name == "ok") {
-                        // console.log(result['data']['0']['COUNT(id)'])
-                        if(result['data']['0']['COUNT(id)'] == 0) {
-                            $.ajax({
-                                url: 'php/deleteLocationByIdNum.php',
-                                type: 'POST',
-                                dataType: 'json',
-                                data: {
-                                    id: entryId,
-                                },
-                                success: function(result) {
-                                    console.log(result);
-                                    entries = 0
-                                    if (result.status.name == "ok") {
-                                        successMessage("Location deleted.")
-                                                    
-                                    }
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                console.log(jqXHR.responseText);
-                                successMessage(jqXHR.responseText);
-                                }
-                            }); 
-                        }
-                        else {
-                            successMessage("Error: This location still has dependencies and cannot be delete.")
-                        }
-                        reset();         
+                        successMessage("Location deleted.")
+
+                        setTimeout(() => {
+                            window.location.href='/';
+                        }, 3000);
+                                    
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                // console.log(jqXHR.responseText);
-                // successMessage(jqXHR.responseText);
+                console.log(jqXHR.responseText);
+                successMessage(jqXHR.responseText);
                 }
             }); 
 
@@ -1371,13 +1360,20 @@ function buildLocationTable(){
 
 
 //Document Ready:
-    $(document).ready(function() {
+    $(document).ready(async function() {
+
+    await preloader(1)
+
     buildTable("php/getAllData.php");
     buildLocationTable();
     buildDepartmentTable();
 
+    preloader(0)
+
+
     //Preloader
         // preloader();
+
     });
 
 
@@ -1466,14 +1462,27 @@ function buildLocationTable(){
         });
 
 // On change:
-    $("#tableSelect").on("change", function () {
+    $("#tableSelect").on("change", async function () {
         if($( "#tableSelect option:selected").val() === "Employees") {
+            
+            await preloader(1)
             employeeClick();
+            preloader(0)
+
         }
         if($( "#tableSelect option:selected").val() === "Locations") {
+            
+            await preloader(1)
             locationClick();
+            preloader(0)
+
         }
         if($( "#tableSelect option:selected").val() === "Departments") {
+            
+            await preloader(1)
             departmentClick();
+            preloader(0)
+
+
         }
     })
